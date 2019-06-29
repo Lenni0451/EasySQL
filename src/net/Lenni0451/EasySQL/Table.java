@@ -61,6 +61,12 @@ public class Table {
 	
 	public void clearRows() throws SQLException {
 		Statement st = this.getConnection().createStatement();
+		st.executeUpdate("DELETE FROM " + this.tableName);
+		st.close();
+	}
+	
+	public void truncate() throws SQLException {
+		Statement st = this.getConnection().createStatement();
 		st.executeUpdate("TRUNCATE " + this.tableName);
 		st.close();
 	}
