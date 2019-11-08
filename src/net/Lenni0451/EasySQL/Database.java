@@ -31,7 +31,7 @@ public class Database implements AutoCloseable {
 		}
 	}
 	
-	public void silentClose() throws Exception {
+	public void silentClose() {
 		try {
 			this.close();
 		} catch (Exception e) {}
