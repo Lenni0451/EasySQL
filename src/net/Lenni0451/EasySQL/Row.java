@@ -44,7 +44,10 @@ public class Row {
 		while(rs.next()) {
 			current++;
 			if(current == this.index) {
-				return rs.getObject(index);
+				Object ob = rs.getObject(index);
+				rs.close();
+				st.close();
+				return ob;
 			}
 		}
 		rs.close();
@@ -60,7 +63,10 @@ public class Row {
 		while(rs.next()) {
 			current++;
 			if(current == this.index) {
-				return rs.getObject(columnName);
+				Object ob = rs.getObject(columnName);
+				rs.close();
+				st.close();
+				return ob;
 			}
 		}
 		rs.close();
