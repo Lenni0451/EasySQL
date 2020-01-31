@@ -159,6 +159,14 @@ public class Table {
 		return this.getRowsWhere(elements, equalsIgnoreCaseStrings);
 	}
 	
+	public List<Row> getRowsWhere(final String key, final Object value) throws SQLException {
+		return this.getRowsWhere(new RowInfo(key, value));
+	}
+	
+	public List<Row> getRowsWhere(final boolean equalsIgnoreCaseStrings, final String key, final Object value) throws SQLException {
+		return this.getRowsWhere(equalsIgnoreCaseStrings, new RowInfo(key, value));
+	}
+	
 	public void addColumn(final ColumnInfo info) throws SQLException {
 		String query = "ALTER TABLE " + this.tableName + " ADD " + info.toString();
 		Statement st = this.getConnection().createStatement();
