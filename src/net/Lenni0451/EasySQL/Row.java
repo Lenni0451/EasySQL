@@ -82,5 +82,13 @@ public class Row {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 	}
+
+	public void updateColumn(final int columnId, final Object object) throws SQLException {
+		String sql = "UPDATE " + this.getParent().getName() + " SET " + this.parent.getColumns().keySet().toArray(new String[0])[columnId] + " = ? WHERE " + this.getPrimaryKeyName() + " = '" + this.getColumn(1) + "'";
+		PreparedStatement preparedStatement = this.getConnection().prepareStatement(sql);
+		preparedStatement.setObject(1, object);
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+	}
 	
 }
