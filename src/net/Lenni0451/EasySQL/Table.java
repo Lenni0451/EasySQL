@@ -227,4 +227,16 @@ public class Table {
 		this.removeRow(this.getRow(index));
 	}
 	
+	public List<Row> getRows() throws SQLException {
+		List<Row> rows = new ArrayList<>();
+		Statement st = this.getConnection().createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM " + this.tableName);
+		for(int index = 1; rs.next(); index++) {
+			rows.add(new Row(this, index));
+		}
+		rs.close();
+		st.close();
+		return rows;
+    }
+	
 }
